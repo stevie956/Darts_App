@@ -1,7 +1,16 @@
 import React, { useState } from "react";
+const p1Throws = [];
+const p2Throws = [];
+const dartAverage = (throws) => {
+  console.log("Dart average...");
 
+  const sum = throws.reduce((a, b) => a + b);
+  return (sum / throws.length).toFixed(2)
+}
 export const ScoreInputForm = (props) => {
   const [playerTurn, setPlayerTurn] = useState(1);
+const [p1DartAverage, setP1DartAverage] = useState(0);
+const [p2DartAverage, setP2DartAverage] = useState(0);
   const player1Change = () => {
     setPlayerTurn(1);
   };
@@ -10,16 +19,35 @@ export const ScoreInputForm = (props) => {
   };
 
   const scoreUpdate = (score) => {
-   
     if (playerTurn === 1) {
+      p1Throws.push(score);
+      const average = dartAverage(p1Throws)
+      setP1DartAverage(average);
       const newScore = props.player1Score - score;
-      props.setPlayer1Score(newScore);
+      props.setPlayer1Score(newScore); 
+      if (newScore === 0) {
+        props.setPlayer1Score(501);
+        props.setPlayer2Score(501);
+        props.setPlayer1Legs(props.player1Legs + 1)
+      }
     }
     if (playerTurn === 2) {
+      p2Throws.push(score);
+      const average = dartAverage(p2Throws)
+      setP2DartAverage(average);
       const newScore = props.player2Score - score;
-      props.setPlayer2Score(newScore);
+      props.setPlayer2Score(newScore); 
+      if (newScore === 0) {
+        props.setPlayer1Score(501);
+        props.setPlayer2Score(501);
+        props.setPlayer2Legs(props.player2Legs + 1)
+      }
     }
   };
+
+
+  
+
 
   const buttons = Array(22).fill("");
   buttons[21] = 50;
@@ -31,22 +59,24 @@ export const ScoreInputForm = (props) => {
       <div className="layout">
         <div className="column column-one">
           <h5 className="Player-Name">Player 1</h5>
-          <h2 id="firstPlayerScore" className="score">
+          <h2 id="firstPlayerScore" className="score">Score: 
             {props.player1Score}
           </h2>
-          <h5 id="three-dart-average">3-Dart Avg:</h5>
-          <h5 id="legs">Legs:</h5>
+          <h5 id="three-dart-average">3-Dart Avg:{p1DartAverage}</h5>
+          <h5 id="player1Legs" className="legs">Legs :{props.player1Legs}</h5>
+
+          <h5 className="Player-Name">Player 2</h5>
+          <h2 id="secondPlayerScore" className="score">Score:
+            {props.player2Score}
+          </h2>
+          <h5 id="three-dart-average">3-Dart Avg:{p2DartAverage}</h5>
+          <h5 id="player2Legs" className="legs">Legs:{props.player2Legs}</h5>
         </div>
       </div>
-      <div className="layout">
-        <div className="multiplier">
-          <button className="multiplier_button multiplier_double">
-            Double
-          </button>
-          <button className="multiplier_button multiplier_double">
-            Treble
-          </button>
-        </div>
+
+      <div className="multiplier">
+        <button className="multiplier_button multiplier_double">Double</button>
+        <button className="multiplier_button multiplier_double">Treble</button>
       </div>
 
       <label>
@@ -55,7 +85,7 @@ export const ScoreInputForm = (props) => {
           onChange={player1Change}
           checked={playerTurn === 1}
         ></input>
-        player1Score
+      Player 1
       </label>
       <label>
         <input
@@ -63,29 +93,30 @@ export const ScoreInputForm = (props) => {
           onChange={player2Change}
           checked={playerTurn === 2}
         ></input>
-        player2Score
+        Player 2
+       
       </label>
+
       <div className="num-pad">
         {buttons.map((el, i) => {
           console.log("el,i:", el, i);
-          const n =  el ? el : i + 1;
+          const n = el ? el : i + 1;
           return (
-            <button key={i} className="num-pad__button num-pad__numeric" onClick={() => scoreUpdate(n)}>{n}</button>
+            <button
+              key={i}
+              className="num-pad__button num-pad__numeric"
+              onClick={() => {
+                scoreUpdate(n)
+                }}
+              //  player1DartAverage(n)}}
+            >
+              {n}
+            </button>
           );
         })}
 
         <button className="num-pad__button num-pad__back">Back</button>
         <button className="num-pad__button num-pad__miss">Miss</button>
-      </div>
-      <div className="layout">
-        <div className="column column-two">
-          <h5 className="Player-Name">Player 2</h5>
-          <h2 id="secondPlayerScore" className="score">
-            {props.player2Score} 
-          </h2>
-          <h5 id="three-dart-average">3-Dart Avg:</h5>
-          <h5 id="legs">Legs:</h5>
-        </div>
       </div>
     </div>
   );

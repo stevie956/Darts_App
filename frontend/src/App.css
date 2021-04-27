@@ -1,31 +1,9 @@
-.App {
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
+ 
 }
 
 .btn {
@@ -35,19 +13,52 @@
   cursor: pointer;
   outline: black;
   border-radius: 5px;
-  } 
-  .label {
-    padding: 4px;
-    background-color: aqua;
-    font-size: 2rem;
-    margin: center;
-    
-
-
   }
-  .num-pad {
-    padding-top: 15px;
-   display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-    
+
+
+.layout {
+  display: flex;
+  position: relative;
+  min-height: 100px;
+
+}
+
+.column {
+  flex: 33.33% 1 0;
+  display: flex;
+  flex-direction: column;
+  background-color:white;
+  align-items: center;
+  padding: 25px 15px;
+  position: relative;
+ 
+}
+.column-one {
+  background-color: rgb(20, 214, 20);
+}
+
+.column-two {
+  background-color:white;
+}
+.column-three {
+  background-color: orange;
+}
+.player-name {
+  margin-bottom: 15px;
+}
+
+.num-pad {
+  padding-top: 15px;
+ display: grid;
+ grid-template-columns: 1fr 1fr 1fr;
+  
+}
+.num-pad__display {
+  width: 100%;
+  margin-bottom: 10px;
+  line-height: 2;
+}
+
+.num-pad__numeric {
+      position: center;
   }
