@@ -5,12 +5,14 @@ const dartAverage = (throws) => {
   console.log("Dart average...");
 
   const sum = throws.reduce((a, b) => a + b);
-  return (sum / throws.length).toFixed(2)
-}
+  return (sum / throws.length).toFixed(2);
+};
+
+
 export const ScoreInputForm = (props) => {
   const [playerTurn, setPlayerTurn] = useState(1);
-const [p1DartAverage, setP1DartAverage] = useState(0);
-const [p2DartAverage, setP2DartAverage] = useState(0);
+  const [p1DartAverage, setP1DartAverage] = useState(0);
+  const [p2DartAverage, setP2DartAverage] = useState(0);
   const player1Change = () => {
     setPlayerTurn(1);
   };
@@ -21,33 +23,29 @@ const [p2DartAverage, setP2DartAverage] = useState(0);
   const scoreUpdate = (score) => {
     if (playerTurn === 1) {
       p1Throws.push(score);
-      const average = dartAverage(p1Throws)
+      const average = dartAverage(p1Throws);
       setP1DartAverage(average);
       const newScore = props.player1Score - score;
-      props.setPlayer1Score(newScore); 
+      props.setPlayer1Score(newScore);
       if (newScore === 0) {
         props.setPlayer1Score(501);
         props.setPlayer2Score(501);
-        props.setPlayer1Legs(props.player1Legs + 1)
+        props.setPlayer1Legs(props.player1Legs + 1);
       }
     }
     if (playerTurn === 2) {
       p2Throws.push(score);
-      const average = dartAverage(p2Throws)
+      const average = dartAverage(p2Throws);
       setP2DartAverage(average);
       const newScore = props.player2Score - score;
-      props.setPlayer2Score(newScore); 
+      props.setPlayer2Score(newScore);
       if (newScore === 0) {
         props.setPlayer1Score(501);
         props.setPlayer2Score(501);
-        props.setPlayer2Legs(props.player2Legs + 1)
+        props.setPlayer2Legs(props.player2Legs + 1);
       }
     }
   };
-
-
-  
-
 
   const buttons = Array(22).fill("");
   buttons[21] = 50;
@@ -59,18 +57,24 @@ const [p2DartAverage, setP2DartAverage] = useState(0);
       <div className="layout">
         <div className="column column-one">
           <h5 className="Player-Name">Player 1</h5>
-          <h2 id="firstPlayerScore" className="score">Score: 
+          <h2 id="firstPlayerScore" className="score">
+            Score:
             {props.player1Score}
           </h2>
           <h5 id="three-dart-average">3-Dart Avg:{p1DartAverage}</h5>
-          <h5 id="player1Legs" className="legs">Legs :{props.player1Legs}</h5>
+          <h5 id="player1Legs" className="legs">
+            Legs :{props.player1Legs}
+          </h5>
 
           <h5 className="Player-Name">Player 2</h5>
-          <h2 id="secondPlayerScore" className="score">Score:
+          <h2 id="secondPlayerScore" className="score">
+            Score:
             {props.player2Score}
           </h2>
           <h5 id="three-dart-average">3-Dart Avg:{p2DartAverage}</h5>
-          <h5 id="player2Legs" className="legs">Legs:{props.player2Legs}</h5>
+          <h5 id="player2Legs" className="legs">
+            Legs:{props.player2Legs}
+          </h5>
         </div>
       </div>
 
@@ -85,7 +89,7 @@ const [p2DartAverage, setP2DartAverage] = useState(0);
           onChange={player1Change}
           checked={playerTurn === 1}
         ></input>
-      Player 1
+        Player 1
       </label>
       <label>
         <input
@@ -94,7 +98,6 @@ const [p2DartAverage, setP2DartAverage] = useState(0);
           checked={playerTurn === 2}
         ></input>
         Player 2
-       
       </label>
 
       <div className="num-pad">
@@ -106,9 +109,8 @@ const [p2DartAverage, setP2DartAverage] = useState(0);
               key={i}
               className="num-pad__button num-pad__numeric"
               onClick={() => {
-                scoreUpdate(n)
-                }}
-              //  player1DartAverage(n)}}
+                scoreUpdate(n);
+              }}
             >
               {n}
             </button>
