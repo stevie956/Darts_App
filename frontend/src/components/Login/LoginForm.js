@@ -2,17 +2,27 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 
-function LoginForm({ Login, error }) {
-  const [details, setDetails] = useState({ username: "", password: "" });
-  const submitHandler = (e) => {
+
+const LoginForm = (props, error) => {
+  const [formState, setFormState] = useState({ username: "", password: "" });
+  
+  const handleChange = (e) => {
+    
+    const newState = { ...formState }
+    newState[e.target.name] = e.target.value;
+    setFormState(newState);
+  }
+  
+  const handleSubmit = (e) => {
     e.preventDefault();
-    Login(details);
+  props.submit(formState.username, formState.password)
+    
   };
 
   return (
     <Container maxWidth="lg">
       <div className="login">
-        <form onSubmit={submitHandler}>
+        <form onSubmit={handleSubmit}>
           <div className="form-inner">
             <h2>Login</h2>
             {error !== "" ? <div className="error">{error}</div> : ""}
@@ -22,10 +32,8 @@ function LoginForm({ Login, error }) {
                 type="text"
                 name="username"
                 id="username"
-                onChange={(e) =>
-                  setDetails({ ...details, name: e.target.value })
-                }
-                value={details.name}
+              onChange={handleChange}
+                value={formState.username}
               />
             </div>
             <div className="form-group">
@@ -36,10 +44,8 @@ function LoginForm({ Login, error }) {
                 type="password"
                 name="password"
                 id="password"
-                onChange={(e) =>
-                  setDetails({ ...details, password: e.target.value })
-                }
-                value={details.password}
+              onChange={handleChange}
+                value={formState.password}
               ></input>
             </div>
             <div className="loginbtn">
@@ -47,7 +53,7 @@ function LoginForm({ Login, error }) {
                 type="submit"
                 value="LOGIN"
                 variant="contained"
-                color="secondary"
+                color="primary"
               >
                 LOGIN
               </Button>

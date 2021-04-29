@@ -1,12 +1,14 @@
 
 import './App.css';
+import { FunctionalGameContainer } from './components/GameOn/GameContainer';
 
-import LoginForm from './components/Login/LoginForm';
+
+// import LoginForm from './components/Login/LoginForm';
 
 function App() {
   return (
     <div>
-     <LoginForm />
+     <FunctionalGameContainer />
     </div>
   );
 }

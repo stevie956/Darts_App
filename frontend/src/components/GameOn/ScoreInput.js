@@ -3,13 +3,18 @@ const p1Throws = [];
 const p2Throws = [];
 const dartAverage = (throws) => {
   console.log("Dart average...");
-
-  const sum = throws.reduce((a, b) => a + b);
-  return (sum / throws.length).toFixed(2);
+  if (throws.length > 0) {
+    const sum = throws.reduce((a, b) => a + b);
+    return (sum / throws.length).toFixed(2);
+  }
+  return 0;
 };
 
 
 export const ScoreInputForm = (props) => {
+  const [currentScoreP1, setCurrentScoreP1] = useState(0);
+  const [p1TurnNum, setP1TurnNum] = useState(1);
+  const [p2TurnNum, setP2TurnNum] = useState(0);
   const [playerTurn, setPlayerTurn] = useState(1);
   const [p1DartAverage, setP1DartAverage] = useState(0);
   const [p2DartAverage, setP2DartAverage] = useState(0);
@@ -22,7 +27,27 @@ export const ScoreInputForm = (props) => {
 
   const scoreUpdate = (score) => {
     if (playerTurn === 1) {
-      p1Throws.push(score);
+    
+      console.log("ash ash ash",p1TurnNum % 3 === 0);
+      if (p1TurnNum % 3 === 0) {
+
+        console.log("in here")
+        console.log("current Score in if = ", currentScoreP1);
+        setCurrentScoreP1(score + currentScoreP1);
+        p1Throws.push(currentScoreP1);
+        setCurrentScoreP1(0)
+        
+      }
+      else {
+        console.log('pressed button = ', score);
+        console.log('currentScore before update ', currentScoreP1);
+        const total = parseInt(score) + currentScoreP1
+        setCurrentScoreP1(total);
+        console.log("current Score  after update = ", currentScoreP1);
+        console.log("total = ", total);
+      }
+      setP1TurnNum(p1TurnNum + 1);
+      
       const average = dartAverage(p1Throws);
       setP1DartAverage(average);
       const newScore = props.player1Score - score;
@@ -102,7 +127,7 @@ export const ScoreInputForm = (props) => {
 
       <div className="num-pad">
         {buttons.map((el, i) => {
-          console.log("el,i:", el, i);
+          // console.log("el,i:", el, i);
           const n = el ? el : i + 1;
           return (
             <button
