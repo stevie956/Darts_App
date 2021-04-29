@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 
+
 router.post("/login", (request, response) => {
     userModel.findOne({username: request.body.username}).then((userData) =>{
       if(userData){
@@ -28,6 +29,7 @@ router.post("/login", (request, response) => {
   });
 
   router.get("/logout", (request, response) => {
+    
     request.session.loggedIn = false;
     response.send("User has logged out");
 });

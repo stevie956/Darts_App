@@ -20,6 +20,12 @@ const port = 4000;
 //read json
 app.use(express.json());
 
+app.use(session({
+    secret: 'stevieseiflex',
+    resave: false,
+    saveUninitialized: false
+}));
+
 app.use("/api/match", matchRouter);
 
 app.use("/api/user", userRouter);
