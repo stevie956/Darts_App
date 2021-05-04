@@ -7,11 +7,10 @@ const Game501Form = (props) => {
   });
 
   const handleChange = (e) => {
-    const newState = { ...formState }
+    const newState = { ...formState };
     newState[e.target.name] = e.target.value;
     setFormState(newState);
-}
-
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,19 +19,36 @@ const Game501Form = (props) => {
   };
 
   return (
-    <div>
-    <h1>501</h1>
-      <form onSubmit={handleSubmit}>
-        <label className="label">
-          Player One
-          <input name="nameOne" value={formState.nameOne} onChange={handleChange}></input>
-        </label>
-        <label className="label">
-          Player Two
-          <input name="nameTwo" value={formState.nameTwo} onChange={handleChange}></input>
-        </label>
-        <button type="submit" className="btn btn-primary btn-block">GAME ON!</button>
-      </form>
+    <div
+      className="image"
+      style={{ backgroundImage: `url("https://i.imgur.com/DSNC5m0.jpg")` }}
+    >
+      <div>
+        <h1>501</h1>
+        <form onSubmit={handleSubmit}>
+          <label className="label">
+            Player One
+            <input
+              className="input"
+              name="nameOne"
+              value={formState.nameOne}
+              onChange={handleChange}
+            ></input>
+          </label>
+          <label className="label">
+            Player Two
+            <input
+            className="input"
+              name="nameTwo"
+              value={formState.nameTwo}
+              onChange={handleChange}
+            ></input>
+          </label>
+          <button type="submit" className="btn btn-primary btn-block">
+            GAME ON!
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
