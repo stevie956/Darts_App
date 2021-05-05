@@ -97,7 +97,8 @@ export const ScoreInputForm = (props) => {
           <h5 id="player1Legs" className="legs">
             Legs :{props.player1Legs}
           </h5>
-
+      </div>
+          <div className="column column-two">
           <h5 className="Player-Name">Player 2</h5>
           <h2 id="secondPlayerScore" className="score">
             Score:
@@ -107,7 +108,8 @@ export const ScoreInputForm = (props) => {
           <h5 id="player2Legs" className="legs">
             Legs:{props.player2Legs}
           </h5>
-        </div>
+          </div>
+        
       </div>
 
       <div className="multiplier">

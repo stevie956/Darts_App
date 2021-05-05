@@ -4,10 +4,13 @@ import { LoginForm } from "./LoginForm";
 import { CreateGameForm } from "./CreateGame";
 import { motion } from "framer-motion";
 import { AccountContext } from "./Context";
+import { FunctionalGameContainer } from "../GameOn/GameContainer";
+import { Game501Form } from "../NewGame/Game501";
+import { ScoreInputForm } from "../GameOn/ScoreInput";
 
 
 const Container = styled.div `
-width: 200px;
+width: 500px;
 margin-left: 45%;
 margin-top: 10%;
 
@@ -80,7 +83,7 @@ const InnerContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 0 1.8em;
+  ${'' /* padding: 0 1.8em; */}
 `;
 
 const backdropVariants = {
@@ -130,7 +133,13 @@ export function Homepage(props) {
       }, 400);
     };
   
-    const contextValue = { switchToSignup, switchToSignin };
+    const switchToGameOn = () => {
+      playExpandingAnimation();
+      setTimeout(() => {
+        setActive("gameOn");
+      }, 400);
+    };
+    const contextValue = { switchToSignup, switchToSignin, switchToGameOn };
   
     return (
         <Container>
@@ -157,10 +166,17 @@ export function Homepage(props) {
                 <SmallText>Please sign-up to continue!</SmallText>
               </HeaderContainer>
             )}
+            {active === "gameOn" && (
+              <HeaderContainer>
+                <HeaderText>WHO'S</HeaderText>
+                <HeaderText>PLAYING?</HeaderText>
+              </HeaderContainer>
+            )}
           </TopContainer>
           <InnerContainer>
             {active === "signin" && <LoginForm />}
             {active === "signup" && <CreateGameForm />}
+            {active === "gameOn" && <Game501Form />}
           </InnerContainer>
         </BoxContainer>
       </AccountContext.Provider>

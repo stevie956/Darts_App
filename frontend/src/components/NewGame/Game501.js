@@ -19,15 +19,10 @@ const Game501Form = (props) => {
   };
 
   return (
-    <div
-      className="image"
-      style={{ backgroundImage: `url("https://i.imgur.com/DSNC5m0.jpg")` }}
-    >
       <div>
-        <h1>501</h1>
         <form onSubmit={handleSubmit}>
           <label className="label">
-            Player One
+            Player One: 
             <input
               className="input"
               name="nameOne"
@@ -35,8 +30,9 @@ const Game501Form = (props) => {
               onChange={handleChange}
             ></input>
           </label>
+          <br/><br/>
           <label className="label">
-            Player Two
+            Player Two: 
             <input
             className="input"
               name="nameTwo"
@@ -44,12 +40,12 @@ const Game501Form = (props) => {
               onChange={handleChange}
             ></input>
           </label>
-          <button type="submit" className="btn btn-primary btn-block">
+          <br/><br/>
+          <button type="submit" className="btn btn-primary btn-block gameOnBtn">
             GAME ON!
           </button>
         </form>
       </div>
-    </div>
   );
 };
 
