@@ -5,8 +5,7 @@ import { CreateGameForm } from "./CreateGame";
 import { motion } from "framer-motion";
 import { AccountContext } from "./Context";
 import { FunctionalGameContainer } from "../GameOn/GameContainer";
-import { Game501Form } from "../NewGame/Game501";
-import { ScoreInputForm } from "../GameOn/ScoreInput";
+import { Game501Form } from "./Game501";
 
 
 const Container = styled.div `
@@ -139,7 +138,14 @@ export function Homepage(props) {
         setActive("gameOn");
       }, 400);
     };
-    const contextValue = { switchToSignup, switchToSignin, switchToGameOn };
+
+    const switchToPlayDarts = () => {
+      playExpandingAnimation();
+      setTimeout(() => {
+        setActive("playDarts");
+      }, 400);
+    };
+    const contextValue = { switchToSignup, switchToSignin, switchToGameOn, switchToPlayDarts};
   
     return (
         <Container>
@@ -172,11 +178,19 @@ export function Homepage(props) {
                 <HeaderText>PLAYING?</HeaderText>
               </HeaderContainer>
             )}
+            {active === "playDarts" && (
+              <HeaderContainer>
+                <HeaderText>Lets</HeaderText>
+                <HeaderText>Player</HeaderText>
+                <HeaderText>Darts!</HeaderText>
+              </HeaderContainer>
+            )}
           </TopContainer>
           <InnerContainer>
             {active === "signin" && <LoginForm />}
             {active === "signup" && <CreateGameForm />}
             {active === "gameOn" && <Game501Form />}
+            {active === "playDarts" && <FunctionalGameContainer />}
           </InnerContainer>
         </BoxContainer>
       </AccountContext.Provider>
