@@ -18,6 +18,8 @@ const app = express();
 // app port
 const port = 4000;
 
+app.use(cors());
+
 //read json
 app.use(express.json());
 
@@ -35,7 +37,7 @@ app.use("/api/user", userRouter);
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.use(cors());
+
 
 app.listen(port, () => {
     console.log(`Darts Port is listening at http://localhost:${port}`)

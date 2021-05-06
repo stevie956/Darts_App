@@ -13,12 +13,13 @@ import { Marginer } from "../Login/Marginer";
 
 export const LoginForm = (props) => {
   const history = useHistory();
+  console.log("history", history)
   const [formState, setFormState] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const newFormState = { ...formState };
-    newFormState[e.target.username] = e.target.value;
+    newFormState[e.target.name] = e.target.value;
     console.log(newFormState);
     setFormState(newFormState);
   };
@@ -40,12 +41,9 @@ export const LoginForm = (props) => {
           setError("Incorrect Details!!");
           return;
         }
-        props.setUser({
-          username: formState.username,
-        });
-        props.setUserLoggedIn(true);
         window.localStorage.setItem("userLoggedin", true);
-        history.replace("/");
+        
+        console.log(response);
         return response.json();
       })
       .then((data) => {
@@ -53,6 +51,7 @@ export const LoginForm = (props) => {
         if (data && data.token) {
           window.localStorage.setItem("token", data.token);
         }
+        props.switchToPlayDarts()
       });
   };
 
@@ -66,6 +65,7 @@ export const LoginForm = (props) => {
           type="username"
           placeholder="Username"
           id="username"
+          name="username"
           value={formState.username}
           onChange={handleChange}
         />
@@ -73,6 +73,7 @@ export const LoginForm = (props) => {
           type="password"
           placeholder="Password"
           id="password"
+          name="password"
           value={formState.password}
           onChange={handleChange}
         />

@@ -4,8 +4,8 @@ import { AccountContext } from "./Context";
 
 const Game501Form = (props) => {
   const [formState, setFormState] = useState({
-    nameOne: "",
-    nameTwo: "",
+    playerOne: "",
+    playerTwo: "",
   });
 
   const handleChange = (e) => {
@@ -17,14 +17,14 @@ const Game501Form = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handleSubmit");
-    props.submit(formState.nameOne, formState.nameTwo);
+    props.submit(formState.playerOne, formState.playerTwo);
   };
 const { switchToPlayDarts }  = useContext(AccountContext);
   return (
       <div>
          <FormContainer onSubmit={handleSubmit}>
-        <Input type="text" placeholder="Player One" value={formState.nameOne} onChange={handleChange}/>
-        <Input type="text" placeholder="Player Two" value={formState.nameTwo} onChange={handleChange}/>
+        <Input type="text" name="nameOne" placeholder="Player One" value={formState.playerOne} onChange={handleChange}/>
+        <Input type="text" name="nameTwo" placeholder="Player Two" value={formState.playerTwo} onChange={handleChange}/>
        </FormContainer>
        <button className="btn btn-primary btn-block gameOnBtn"
       onClick={switchToPlayDarts}>

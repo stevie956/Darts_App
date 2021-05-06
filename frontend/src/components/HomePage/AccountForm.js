@@ -174,8 +174,8 @@ export function Homepage(props) {
             )}
             {active === "gameOn" && (
               <HeaderContainer>
-                <HeaderText>WHO'S</HeaderText>
-                <HeaderText>PLAYING?</HeaderText>
+                <HeaderText>Who's</HeaderText>
+                <HeaderText>Playing</HeaderText>
               </HeaderContainer>
             )}
             {active === "playDarts" && (
@@ -187,7 +187,7 @@ export function Homepage(props) {
             )}
           </TopContainer>
           <InnerContainer>
-            {active === "signin" && <LoginForm />}
+            {active === "signin" && <LoginForm switchToPlayDarts = {switchToPlayDarts}/>}
             {active === "signup" && <CreateGameForm />}
             {active === "gameOn" && <Game501Form />}
             {active === "playDarts" && <FunctionalGameContainer />}

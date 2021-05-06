@@ -16,13 +16,13 @@ router.post("/login", (request, response) => {
             id: userData._id,
           }
           console.log("request.session", request.session);
-          response.send("logged in");
+          response.json("logged in");
           
         }else{
-          response.status(401).send("password is wrong");
+          response.status(401).json("password is wrong");
         }
       }else{
-        response.status(404).send("Please try again")
+        response.status(404).json("Please try again")
       }
     })
   
@@ -45,7 +45,7 @@ router.post("/register", (req, res) => {
     userModel.create(user).then((data) => {
         console.log("getting data ", data);
     })
-    res.send("New user has been created")
+    res.json("New user has been created")
 })
 
 
