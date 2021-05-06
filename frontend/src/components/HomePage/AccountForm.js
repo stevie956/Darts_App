@@ -181,7 +181,7 @@ export function Homepage(props) {
             {active === "playDarts" && (
               <HeaderContainer>
                 <HeaderText>Lets</HeaderText>
-                <HeaderText>Player</HeaderText>
+                <HeaderText>Play</HeaderText>
                 <HeaderText>Darts!</HeaderText>
               </HeaderContainer>
             )}
