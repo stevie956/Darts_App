@@ -1,6 +1,4 @@
-
 import React, { useContext, useState } from "react";
-import{ useHistory } from "react-router";
 import {
   BoldLink,
   BoxContainer,
@@ -15,7 +13,7 @@ import { AccountContext } from "./Context";
 export function CreateGameForm(props) {
   
   const [form, setForm]  = useState({username: "", password: ""});
-  const history = useHistory();
+
 
   const handleChange = (e) => {
     const newFormState = { ...form };
