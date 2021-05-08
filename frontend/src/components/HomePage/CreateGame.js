@@ -34,7 +34,8 @@ export function CreateGameForm(props) {
       body: JSON.stringify(form),
     })
       .then((response) => response.json())
-      .then(history.push("/LoginForm"));
+      props.switchToGameOn();
+      // .then(history.push("/LoginForm"));
   };
 
 

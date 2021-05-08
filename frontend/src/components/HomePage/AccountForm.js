@@ -188,7 +188,7 @@ export function Homepage(props) {
           </TopContainer>
           <InnerContainer>
             {active === "signin" && <LoginForm switchToPlayDarts = {switchToPlayDarts}/>}
-            {active === "signup" && <CreateGameForm />}
+            {active === "signup" && <CreateGameForm switchToGameOn={switchToGameOn} />}
             {active === "gameOn" && <Game501Form />}
             {active === "playDarts" && <FunctionalGameContainer />}
           </InnerContainer>
